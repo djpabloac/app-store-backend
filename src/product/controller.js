@@ -17,14 +17,28 @@ class ProductController {
   }
 
   async get(req, resp) {
+    const users = await ProductService.get()
+
     return resp
       .status(200)
-      .json({
-        message: 'Leido correctamente'
-      })
+      .json(users)
+  }
+
+  async getById(req, resp) {
+    const { params: { id } } = req
+
+    const users = await ProductService.getById(id)
+
+    return resp
+      .status(200)
+      .json(users)
   }
 
   async update(req, resp) {
+    const { params: { id }, body } = req
+
+    await ProductService.update(id, body)
+
     return resp
       .status(200)
       .json({

@@ -11,7 +11,7 @@ const ProductSchema = new Schema({
   },
   deleted: {
     type: Boolean,
-    default: true
+    default: false
   }
 }, {
   timestamps: true
