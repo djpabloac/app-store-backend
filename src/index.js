@@ -1,4 +1,5 @@
 import express from 'express'
+import morgan from 'morgan'
 import config from './commons/config/index.js'
 import mongoDB from './commons/database/mongodb.js'
 import { responseFormatter } from './commons/middleware/index.js';
@@ -9,6 +10,7 @@ const bootstrap = async () => {
 
   const app = express()
 
+  app.use(morgan('dev'))
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
   app.use(responseFormatter)
