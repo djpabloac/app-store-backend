@@ -1,14 +1,14 @@
-import ProductService from './service.js'
+import ClientService from './service.js'
 
-class ProductController {
+class ClientController {
   async create(req, resp) {
     try {
       const { body } = req
-      const product = await ProductService.create(body)
+      const client = await ClientService.create(body)
 
       return resp
         .status(200)
-        .json(product)
+        .json(client)
     } catch (error) {
       return resp
         .status(500)
@@ -17,27 +17,27 @@ class ProductController {
   }
 
   async get(req, resp) {
-    const products = await ProductService.get()
+    const clients = await ClientService.get()
 
     return resp
       .status(200)
-      .json(products)
+      .json(clients)
   }
 
   async getById(req, resp) {
     const { params: { id } } = req
 
-    const product = await ProductService.getById(id)
+    const client = await ClientService.getById(id)
 
     return resp
       .status(200)
-      .json(product)
+      .json(client)
   }
 
   async update(req, resp) {
     const { params: { id }, body } = req
 
-    await ProductService.update(id, body)
+    await ClientService.update(id, body)
 
     return resp
       .status(200)
@@ -49,7 +49,7 @@ class ProductController {
   async delete(req, resp) {
     const { params: { id } } = req
 
-    await ProductService.delete(id)
+    await ClientService.delete(id)
 
     return resp
       .status(200)
@@ -59,4 +59,4 @@ class ProductController {
   }
 }
 
-export default new ProductController()
+export default new ClientController()

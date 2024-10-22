@@ -1,18 +1,22 @@
 import express from 'express'
-import MainRouter from './router.js'
-import MongoDB from './commons/database/mongodb.js'
+import config from './commons/config/index.js'
+import mongoDB from './commons/database/mongodb.js'
+import { responseFormatter } from './commons/middleware/index.js';
+import mainRouter from './router.js'
 
 const bootstrap = async () => {
-  await MongoDB();
+  await mongoDB();
 
   const app = express()
 
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
-  app.use('/api', MainRouter)
+  app.use(responseFormatter)
+  app.use('/api', mainRouter)
 
-  app.listen(8000, () => {
-    console.log('http://localhost:8000')
+  const { PORT } = config
+  app.listen(PORT, () => {
+    console.log(`http://localhost:${PORT}`)
   })
 }
 

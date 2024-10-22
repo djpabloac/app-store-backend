@@ -1,37 +1,12 @@
 import { Router } from 'express'
+import ClientController from './controller.js'
 
 const ClientRouter = Router()
 
-ClientRouter.post('/', (req, resp) => {
-  return resp
-  .status(200)
-  .json({
-    message: 'Creado correctamente'
-  })
-})
-
-ClientRouter.get('/', (req, resp) => {
-  return resp
-  .status(200)
-  .json({
-    message: 'Leido correctamente'
-  })
-})
-
-ClientRouter.put('/', (req, resp) => {
-  return resp
-  .status(200)
-  .json({
-    message: 'Actualizado correctamente'
-  })
-})
-
-ClientRouter.delete('/', (req, resp) => {
-  return resp
-  .status(200)
-  .json({
-    message: 'Eliminado correctamente'
-  })
-})
+ClientRouter.post('/', ClientController.create)
+ClientRouter.get('/', ClientController.get)
+ClientRouter.get('/:id', ClientController.getById)
+ClientRouter.put('/:id', ClientController.update)
+ClientRouter.delete('/:id', ClientController.delete)
 
 export default ClientRouter
