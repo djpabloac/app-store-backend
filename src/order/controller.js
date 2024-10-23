@@ -3,11 +3,17 @@ import OrderService from './service.js'
 class OrderController {
   async create(req, resp) {
     const { body } = req
-    const order = await OrderService.create(body)
+    try {
+      const order = await OrderService.create(body)
 
-    return resp
-      .status(200)
-      .json(order)
+      return resp
+        .status(200)
+        .json(order)
+    } catch (error) {
+      return resp
+        .status(500)
+        .json(error)
+    }
   }
 
   async get(req, resp) {

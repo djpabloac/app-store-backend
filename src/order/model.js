@@ -32,6 +32,10 @@ const OrderSchema = new mongoose.Schema({
     required: true,
     ref: 'client'
   },
+  fullName: {
+    type: String,
+    required: true
+  },
   currency: {
     type: String,
     required: true,

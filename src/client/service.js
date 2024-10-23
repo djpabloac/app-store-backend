@@ -19,7 +19,7 @@ class ClientService {
   }
   async existsByEmail(email) {
     const client = await ClientModel
-      .findOne({ email })
+      .findOne({ email: email.toLowerCase() })
       .lean()
     if (client) throw new Error("Email duplicate from client")
   }

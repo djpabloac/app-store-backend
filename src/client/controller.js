@@ -3,11 +3,17 @@ import ClientService from './service.js'
 class ClientController {
   async create(req, resp) {
     const { body } = req
-    const client = await ClientService.create(body)
+    try {
+      const client = await ClientService.create(body)
 
-    return resp
-      .status(200)
-      .json(client)
+      return resp
+        .status(200)
+        .json(client)
+    } catch (error) {
+      return resp
+        .status(500)
+        .json(error)
+    }
   }
 
   async get(req, resp) {
